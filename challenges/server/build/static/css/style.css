@@ -1,0 +1,109 @@
+:root {
+    --bg: #0b1020;
+    --card: #0f1a33;
+    --border: #23345c;
+    --text: #e6e8ee;
+    --muted: #9aa3b2;
+    --accent: #ff4d6d;
+  }
+  
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    background: linear-gradient(180deg, #070a14, var(--bg));
+    color: var(--text);
+  }
+  
+  .top {
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand { display: flex; gap: 12px; align-items: baseline; }
+  .logo {
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .subtitle { color: var(--muted); font-size: 12px; }
+  
+  .nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 12px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .nav a:hover { border-color: var(--accent); }
+  
+  .container {
+    max-width: 980px;
+    margin: 24px auto;
+    padding: 0 18px 40px;
+  }
+  
+  .card {
+    background: rgba(15, 26, 51, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+  
+  h1, h2 { margin: 0 0 12px; color: var(--accent); }
+  p { color: var(--text); }
+  ul { color: var(--text); }
+  
+  .form {
+    display: grid;
+    gap: 10px;
+    max-width: 680px;
+  }
+  label { color: var(--muted); font-size: 12px; }
+  input {
+    padding: 12px 12px;
+    background: #0c1328;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+  }
+  button {
+    width: fit-content;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #132148;
+    color: var(--text);
+    cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  
+  .out {
+    background: #0c1328;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    overflow: auto;
+    max-height: 260px;
+  }
+  
+  #preview img {
+    margin-top: 12px;
+    max-width: 420px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  
+  .footer {
+    text-align: center;
+    padding: 18px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  

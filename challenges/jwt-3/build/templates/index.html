@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third Challenge</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Third Challenge</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active" data-section="home">Home</a>
+            <a href="#" class="nav-link" data-section="guest">Guest</a>
+            <a href="#" class="nav-link" data-section="user">User</a>
+            <a href="#" class="nav-link" data-section="admin">Admin</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="card">
+                <h2>Challenge Overview</h2>
+                
+                <h3>Objectives:</h3>
+                <ul>
+                    <li><strong>Level 1 - User Access:</strong> Decode and assemble credentials from obfuscated sources  to obtain the USER flag.</li>
+                    <li><strong>Level 2 - Admin Access:</strong> Exploit a JWT algorithm vulnerability to gain admin access for the ADMIN flag.</li>
+                </ul>
+                
+            </div>
+        </section>
+
+        <!-- Guest Section -->
+        <section id="guest" class="section">
+            <h1>🔍 Credential Hunt</h1>
+            <div class="card">
+                <h2>Find Guest Credentials</h2>
+                <p>Guest credentials are hidden and obfuscated across this application. </p>
+                
+            </div>
+
+            <div class="card">
+                <h2>🔑 Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required placeholder="Decoded username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required placeholder="Assembled password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div id="login-result" class="result"></div>
+            </div>
+
+            
+        </section>
+
+        <!-- User Section -->
+        <section id="user" class="section">
+            <h1>👤 User Panel</h1>
+            <div class="card">
+                <h2>User Information</h2>
+                <p>This section displays your user profile after successful authentication.</p>
+                <button id="fetch-me" class="btn btn-primary">Fetch User Info</button>
+                <div id="user-result" class="result"></div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="admin" class="section">
+            <h1>Admin Panel</h1>
+            <div class="card">
+                <h2>Admin Access</h2>
+                <p>This is the admin section. You need admin privileges to access the contents.</p>
+                <button id="fetch-admin" class="btn btn-primary">Access Admin Panel</button>
+                <div id="admin-result" class="result"></div>
+            </div>
+            
+            <div class="card">
+                <h2>🔑 Public Key</h2>
+                <button id="fetch-pubkey" class="btn btn-primary">Fetch Public Key</button>
+                <div id="pubkey-display" class="key-box">Click button to fetch public key...</div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>CTF RSR</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        const API_PREFIX = '{{ api_prefix }}';
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <p>This challenge has two goals:</p>
+  <ul>
+    <li>Find guest credentials .</li>
+    <li>Find the flag file .</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Login</h2>
+  <div class="form">
+    <label>Username</label>
+    <input id="username" type="text" placeholder="guest" />
+    <label>Password</label>
+    <input id="password" type="password" placeholder="..." />
+    <button id="btnLogin">Login</button>
+    <pre id="loginResult" class="out"></pre>
+  </div>
+</section>
+
+
+{% endblock %}

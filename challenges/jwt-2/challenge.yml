@@ -1,0 +1,26 @@
+name: "Second JWT Challenge"
+author: "badr aymane marwa"
+category: Web Security
+description: |
+  A medium-difficulty JWT security challenge.
+
+  Piece together the guest credentials from several files and log in to get the user flag, then crack the JWT secret to forge an admin token and get the admin flag.
+type: standard
+value: 400
+state: visible
+version: "0.1"
+tags:
+  - jwt
+  - authentication
+  - web
+  - token
+  - cracking
+logic: all
+flags:
+  - FLAG{jwt_weak_user_dev}
+  - FLAG{jwt_weak_admin_dev}
+hints:
+  - Credentials are split across multiple files
+  - Analyze the JWT token structure
+  - The developer is a football fan
+connection_info: "http://localhost:5002"

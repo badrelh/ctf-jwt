@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>User Dashboard</h1>
+  <p>This section displays basic information related to your account.</p>
+
+  <button id="btnMe">Load profile information</button>
+  <pre id="meResult" class="out"></pre>
+</section>
+
+<section class="card">
+  <h2>Profile Image</h2>
+  <p>You can provide a link to an image to update or preview your profile picture.</p>
+
+  <div class="form">
+    <label>Image URL</label>
+    <input id="fetchUrl" type="text" placeholder="https://example.com/image.png" />
+    <button id="btnFetch">Load image</button>
+  </div>
+
+  <pre id="fetchResult" class="out"></pre>
+  <div id="preview"></div>
+</section>
+
+{% endblock %}

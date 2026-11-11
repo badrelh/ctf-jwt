@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Tests and tooling
+.pytest_cache/
+.coverage
+htmlcov/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Secrets and local environment
+.env
+.env.*
+*.env
+*.pem
+*.key
+secrets/
+
+# Terraform (no longer used, kept ignored in case state files come back)
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+*.auto.tfvars
+
+# CTFd / ctfcli local configuration (contains the CTFd API key)
+.ctf/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

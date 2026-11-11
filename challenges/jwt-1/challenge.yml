@@ -1,0 +1,24 @@
+name: "First JWT Challenge"
+author: "badr aymane marwa"
+category: Web Security
+description: |
+  Explore JWT security vulnerabilities.
+
+  Find the guest credentials and log in to get the user flag, then exploit the JWT verification to get the admin flag.
+type: standard
+value: 300
+state: visible
+version: "0.1"
+tags:
+  - jwt
+  - authentication
+  - web
+  - token
+logic: all
+flags:
+  - FLAG{jwt_none_user_dev}
+  - FLAG{jwt_none_admin_dev}
+hints:
+  - Check common web files that search engines use
+  - Study how the JWT token is structured
+connection_info: "http://localhost:5001"

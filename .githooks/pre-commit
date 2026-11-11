@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# Pre-commit checks. Enable with: git config core.hooksPath .githooks
+#
+# Checks only what is staged, and reads the staged content (git show :path),
+# so a partially staged file is checked as it will be committed.
+set -euo pipefail
+
+red() { printf '\033[31m%s\033[0m\n' "$*" >&2; }
+yellow() { printf '\033[33m%s\033[0m\n' "$*" >&2; }
+
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+[ -z "$staged" ] && exit 0
+
+errfile=$(mktemp)
+trap 'rm -f "$errfile"' EXIT
+fail=0
+
+# 1. Secrets and local state must never be committed.
+forbidden='(\.tfstate(\..*)?$|\.tfvars$|\.auto\.tfvars$|(^|/)\.ctf/|(^|/)\.env(\..*)?$|\.pem$|\.key$)'
+if printf '%s\n' "$staged" | grep -E -q "$forbidden"; then
+    red "Refusing to commit secret or state files:"
+    printf '%s\n' "$staged" | grep -E "$forbidden" | sed 's/^/  /' >&2
+    fail=1
+fi
+
+# 2. No private key material in staged content.
+while IFS= read -r file; do
+    if git show ":$file" 2>/dev/null | grep -q -E 'BEGIN ([A-Z]+ )?PRIVATE KEY'; then
+        red "Private key material found in: $file"
+        fail=1
+    fi
+done <<< "$staged"
+
+# 3. Python files must parse.
+while IFS= read -r file; do
+    case "$file" in
+        *.py)
+            if ! git show ":$file" | python3 -c 'import ast, sys; ast.parse(sys.stdin.read(), sys.argv[1])' "$file" 2>"$errfile"; then
+                red "Python syntax error in $file:"
+                cat "$errfile" >&2
+                fail=1
+            fi
+            ;;
+    esac
+done <<< "$staged"
+
+# 4. YAML files (challenge.yml, CI files) must parse.
+if python3 -c 'import yaml' 2>/dev/null; then
+    while IFS= read -r file; do
+        case "$file" in
+            *.yml|*.yaml)
+                if ! git show ":$file" | python3 -c 'import sys, yaml; yaml.safe_load(sys.stdin)' 2>"$errfile"; then
+                    red "YAML parse error in $file:"
+                    cat "$errfile" >&2
+                    fail=1
+                fi
+                ;;
+        esac
+    done <<< "$staged"
+else
+    yellow "PyYAML not installed, skipping YAML checks (pip install pyyaml)"
+fi
+
+if [ "$fail" -ne 0 ]; then
+    red "Commit blocked. Fix the issues above, or use --no-verify if you are sure."
+    exit 1
+fi

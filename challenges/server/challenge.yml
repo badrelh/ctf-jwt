@@ -1,0 +1,24 @@
+name: "Fourth Challenge"
+author: "badr aymane marwa"
+category: Web Security
+description: |
+  Can you find the flag file in the internal network?
+
+  Find the guest credentials to get the user flag, then explore the internal network to find the admin flag.
+type: standard
+value: 450
+state: visible
+version: "0.1"
+tags:
+  - web
+  - recon
+  - authentication
+  - flask
+logic: all
+flags:
+  - FLAG{USER_SSRF}
+  - FLAG{SSRF_success}
+hints:
+  - Try discovering hidden paths
+  - Some endpoints are only reachable from inside the container
+connection_info: "http://localhost:5004"

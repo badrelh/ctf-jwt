@@ -1,0 +1,25 @@
+name: "Third JWT Challenge"
+author: "badr aymane marwa"
+category: Web Security
+description: |
+  The application uses JWTs signed with RS256. Can you explore JWT vulnerabilities to gain admin access?
+
+  Decode the heavily obfuscated credentials (hex, base64) to get the user flag, then exploit the algorithm confusion vulnerability to get the admin flag.
+type: standard
+value: 550
+state: visible
+version: "0.1"
+tags:
+  - jwt
+  - authentication
+  - web
+  - token
+  - rsa
+logic: all
+flags:
+  - FLAG{jwt_confusion_user_dev}
+  - FLAG{jwt_confusion_admin_dev}
+hints:
+  - You'll need to combine multiple fragments
+  - The JWT uses RS256 asymmetric signing
+connection_info: "http://localhost:5003"
